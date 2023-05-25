@@ -10,19 +10,18 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-
-type Anchor = 'top' | 'left' | 'bottom' | 'right';
+import { IconButton } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import DragHandleIcon from '@mui/icons-material/DragHandle';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 export const Slidebar=()=> {
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
+  const [state, setState] = React.useState(
+    false
+  );
 
   const toggleDrawer =
-    (anchor: Anchor, open: boolean) =>
+    ( open: boolean) =>
     (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
         event &&
@@ -33,59 +32,54 @@ export const Slidebar=()=> {
         return;
       }
 
-      setState({ ...state, [anchor]: open });
+      setState(open);
     };
 
-  const list = (anchor: Anchor) => (
+  const list = () => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      sx={{backgroundColor:'white'}}
       role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
+      // onClick={toggleDrawer( false)}
+      onKeyDown={toggleDrawer( false)}
     >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+      <Box sx={{display:'flex',flexDirection:'column',color:'white'}}>
+        {['My Orders', 'My Profile', 'Delivery Address' , 'Payment Methods' , 'Contact Us',"Settings","Helps&FAQs"].map((text) => (
+          <Button sx={{padding:1.5}}>
+              <ListItemText sx={{textAlign:'center',color:'black'}} primary={text} />
+              <ListItemIcon sx={{minWidth:0}}>
+                <NavigateNextIcon sx={{color:"white"}}/>
               </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
+            </Button>
         ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+        </Box>
     </Box>
   );
 
   return (
     <div>
-      {(['left'] as const).map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+        <React.Fragment>
+          <Button onClick={toggleDrawer(true)}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              sx={{color:"black"}}
+            >
+              
+              <DragHandleIcon/>
+              </IconButton>
+              </Button>
+          
           <SwipeableDrawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-            onOpen={toggleDrawer(anchor, true)}
+            anchor={"left"}
+            open={state}
+            onClose={toggleDrawer(false)}
+            onOpen={toggleDrawer(true)}
           >
-            {list(anchor)}
+            {list()}
           </SwipeableDrawer>
         </React.Fragment>
-      ))}
     </div>
   );
 }
