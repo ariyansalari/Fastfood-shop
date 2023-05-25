@@ -8,12 +8,17 @@ import {
 } from "react-router-dom";
 import { Homescreen, Login, Signup } from "./screens";
 import { Toaster } from "react-hot-toast";
+import { Mainlayout } from "./layout";
 
 
 const router = createBrowserRouter([
     {
       path: "/",
-      element: <Homescreen/>,
+      element: <Mainlayout/>,
+      children:[{
+path:"/",
+element:<Homescreen/>
+      }]
     },
     {
       path:"/signup",
