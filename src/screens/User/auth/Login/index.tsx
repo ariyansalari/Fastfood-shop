@@ -1,4 +1,4 @@
-import { Button, createTheme, IconButton, TextField, ThemeProvider, Typography } from "@mui/material";
+import { Box, Button, createTheme, IconButton, TextField, ThemeProvider, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
@@ -126,10 +126,10 @@ placeholder="Enter new password"
     
     <Root>
      
-      <Divider>Sign up with</Divider>
+      <Divider> Sign up with </Divider>
     
     </Root>
-    <div className="flex justify-between">
+    <Box sx={{display:"flex",justifyContent:"space-around"}}>
     
     
           <Stack direction="row" spacing={2}>
@@ -144,7 +144,7 @@ placeholder="Enter new password"
           </Button>
           </Stack>
     
-    </div>
+    </Box>
             </div>
     
             </Container>

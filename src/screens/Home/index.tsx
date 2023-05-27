@@ -7,11 +7,10 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { Donat, Ratefilter } from '@/assets';
 import { Fastfoodmenu } from '@/routes/Fastfoodmenu';
-import { shadows } from '@mui/system';
+import Container from '@mui/material/Container';
 
 
 export const Homescreen = () => {
-    const [value, setValue] = React.useState<number>(30);
 const [fastfoodmenu,setFastfoodmenu]=React.useState(Fastfoodmenu)
 
     // const handleChange = (event: Event, newValue: number | number[]) => {
@@ -41,30 +40,38 @@ const [fastfoodmenu,setFastfoodmenu]=React.useState(Fastfoodmenu)
 
     return ( 
 
-<div>
-    <Box>
-        <Typography>What would you like to order</Typography>
+<>
+    <Box component={"div"}>
+        <Typography sx={{fontSize:24,fontWeight:700}}>What would you like to order</Typography>
 
     </Box>
-    <Box component={"div"} sx={{display:"flex"}}>
+    <Box component={"div"} sx={{display:"flex",alignItems:"center"}}>
     <TextField
     
           id="outlined-start-adornment"
           placeholder='Find for food or restaurant...'
-          sx={{ m: 1 }}
+          sx={{ }}
           InputProps={{
             startAdornment: <InputAdornment position="start">
+                <IconButton>
                 <SearchIcon/>
+                </IconButton>
+          
             </InputAdornment>,
           }}
         />
-       <Ratefilter fill='black'/>
-<IconButton>
-</IconButton>
+        <Box component={"div"} sx={{ width:41}}>
+            <IconButton>
+
+        <Ratefilter/>
+            </IconButton>
+
+        </Box>
+
     </Box>
 
 
-<Box component={"div"} sx={{display:"flex",justifyContent:"space-between"}}>
+<Box component={"div"} sx={{display:"flex",justifyContent:"space-between",width:320}}>
 {fastfoodmenu.map((i,index)=>(
     <Box  onClick={(e)=>{
     console.log(Fastfoodmenu)
@@ -72,7 +79,7 @@ const [fastfoodmenu,setFastfoodmenu]=React.useState(Fastfoodmenu)
     cF[index].isShow = !cF[index].isShow
    
    setFastfoodmenu([...cF])
-    }} sx={{backgroundColor:i.isShow?"orange":"white",boxShadow:3,borderRadius:100, display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"space-around",width:58,height:98}}>
+    }} sx={{backgroundColor:i.isShow?"#FE724C":"white",boxShadow:3,borderRadius:100, display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"space-around",width:58,height:98}}>
      <Avatar> {i.svg}</Avatar>
     <Typography sx={{fontSize:11}}>{i.name}</Typography>
     </Box>
@@ -83,7 +90,8 @@ const [fastfoodmenu,setFastfoodmenu]=React.useState(Fastfoodmenu)
 
   
   
-</div>
+</>
+
      )
 
     }

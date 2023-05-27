@@ -6,6 +6,8 @@ import { createTheme, styled } from '@mui/material/styles';
 import * as yup from "yup"
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as React from 'react';
+import { instance } from "@/api/constants";
+import Cookies  from "js-cookie";
 export const  Usesignup= () => {
     const [showPassword, setShowPassword] = React.useState(false);
     const [loading,setLoading]=React.useState(false)
@@ -36,8 +38,19 @@ export const  Usesignup= () => {
       })
       const handleregister=React.useCallback((data)=>{
         setLoading(true)
-        toast.success("you registerd succesfuly!")
-  console.log(data)
+        instance.post("/api/register",data).then((res)=>{
+          Cookies.set("token",res.data.token,{
+            expires:7
+          })
+          toast.success("you registerd succesfuly!")
+          console.log(res)
+          setLoading(false)
+        }).catch(()=>{
+          toast.error("somthing sent wrong please try again!")
+          setLoading(false)
+        })
+       
+
   
   
   setLoading(false)

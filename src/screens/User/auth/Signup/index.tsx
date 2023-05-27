@@ -1,4 +1,4 @@
-import { Button, IconButton, TextField, ThemeProvider, Typography } from "@mui/material";
+import { Box, Button, IconButton, TextField, ThemeProvider, Typography } from "@mui/material";
 import Stack from '@mui/material/Stack';
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -92,22 +92,22 @@ placeholder="Enter new password"
   <Divider>Sign up with</Divider>
 
 </Root>
-<div className="flex justify-between">
-
-
-      <Stack direction="row" spacing={2}>
-      <Button variant="outlined" startIcon={<FacebookIcon/>}>
-        Delete
-      </Button>
-      </Stack>
+<Box sx={{display:"flex",justifyContent:"space-around"}}>
+    
+    
+    <Stack direction="row" spacing={2}>
+    <Button variant="outlined" startIcon={<FacebookIcon/>}>
+      Delete
+    </Button>
+    </Stack>
 
 <Stack direction="row" spacing={2}>
-      <Button variant="outlined" startIcon={<GoogleIcon/>}>
-        Delete
-      </Button>
-      </Stack>
+    <Button variant="outlined" startIcon={<GoogleIcon/>}>
+      Delete
+    </Button>
+    </Stack>
 
-</div>
+</Box>
         </div>
 
         </Container>
